@@ -1,0 +1,122 @@
+<div
+    class="modal"
+    id="createCarModal"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Create New Car</h4>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label>Reg No</label>
+                            <input
+                                type="text"
+                                (change)="updateFormData('regNo', $event)"
+                                class="form-control"
+                                placeholder="Enter car image url"
+                                name="regNo"
+                            >
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Brand</label>
+                            <input
+                                type="text"
+                                (change)="updateFormData('brand', $event)"
+                                class="form-control"
+                                placeholder="Enter brand name"
+                                name="brand"
+                            >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label>Model</label>
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    (change)="updateFormData('model', $event)"
+                                    class="form-control"
+                                    placeholder="Enter model name"
+                                    name="model"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Year</label>
+                            <input
+                                type="text"
+                                (change)="updateFormData('year', $event)"
+                                class="form-control"
+                                placeholder="Enter year"
+                                name="year"
+                            >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>Color</label>
+                            <input
+                                type="text"
+                                (change)="updateFormData('color', $event)"
+                                class="form-control"
+                                placeholder="Enter color"
+                                name="color"
+                            >
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label>Daily rate</label>
+                            <input
+                                type="text"
+                                (change)="updateFormData('dailyRate', $event)"
+                                class="form-control"
+                                placeholder="Enter daily rate"
+                                name="dailyRate"
+                            >
+                        </div>
+                    </div>
+                    <div class="col-md-10 mb-3">
+                        <label>Car Image URL</label>
+                        <input
+                            type="text"
+                            (change)="updateFormData('carImage', $event)"
+                            class="form-control"
+                            placeholder="Enter car image URL"
+                            name="image"
+                        >
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-secondary">Reset form</button>
+                        <button
+                            class="btn btn-success"
+                            (click)="saveCar()"
+                        >
+                            Save car
+                        </button>
+                        <!-- <button class="btn btn-primary" *ngIf="car.carId" (click)="updateCar()">Update car</button> -->
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                >
+                    Close
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,1 +1,42 @@
-<p>vehicles works!</p>
+<div class="card col-12">
+    <div class="card-header d-flex justify-content-between">
+        <h5>Car List</h5>
+
+        <button class="btn btn-primary" (click)="openCreateCarModal()">Create New Car</button>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Reg No</th>
+                    <th>Daily Rate</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (car of carList; track $index) {
+                    <tr>
+                        <td>{{$index + 1}}</td>
+                        <td>{{car.brand}}</td>
+                        <td>{{car.model}}</td>
+                        <td>{{car.regNo}}</td>
+                        <td>{{car.dailyRate}}</td>
+                        <td>
+                            <button class="btn btn-secondary">Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <app-create-car-modal/>
+</div>

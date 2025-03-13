@@ -1,1 +1,54 @@
-<p>layout works!</p>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-3">
+    <a
+        class="navbar-brand"
+        routerLink="/"
+    >
+        Car Rental App
+    </a>
+
+    <div class="container-fluid">
+        <div
+            class="collapse navbar-collapse"
+            id="myNavbar"
+        >
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        routerLink="/vehicles"
+                    >
+                        Vehicles
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        routerLink="/dataBinding"
+                    >
+                        Pricing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        routerLink="/dataBinding"
+                    >
+                        About
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <form class="d-flex">
+            <button
+                class="btn btn-outline-light"
+                type="button"
+            >
+                Log Out
+            </button>
+        </form>
+    </div>
+</nav>
+
+<div class="p-3">
+    <router-outlet></router-outlet>
+</div>
