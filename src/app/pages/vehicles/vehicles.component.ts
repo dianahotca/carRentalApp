@@ -15,6 +15,7 @@ export class VehiclesComponent implements AfterViewInit {
 
   carList: Car[] = [];
   private createCarModal: Modal | null = null;
+  selectedCar: Car | null = null;
 
   ngAfterViewInit() {
     this.loadCars();
@@ -23,7 +24,19 @@ export class VehiclesComponent implements AfterViewInit {
 
     if (modalElement) {
       this.createCarModal = new Modal(modalElement);
+
+      modalElement.addEventListener('hidden.bs.modal', () => {
+        this.onCarFormModalClose();
+      });
     }
+  }
+
+  openCarFormModal() {
+    this.createCarModal?.show();
+  }
+
+  onCarFormModalClose() {
+    this.selectedCar = null;
   }
 
   loadCars() {
@@ -32,7 +45,12 @@ export class VehiclesComponent implements AfterViewInit {
     });
   }
 
-  openCreateCarModal() {
-    this.createCarModal?.show();
+  editCar(car: Car) {
+    this.selectedCar = car;
+    this.openCarFormModal();
+  }
+
+  deleteCar() {
+
   }
 }

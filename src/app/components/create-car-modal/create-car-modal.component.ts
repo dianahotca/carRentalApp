@@ -1,8 +1,10 @@
-import { AfterViewInit, Component, EventEmitter, inject, Output } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CarService } from '../../service/car.service';
 import { Modal } from 'bootstrap';
 import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { Car } from '../../model/car';
+import { APIResponse } from '../../model/apiResponse';
 
 @Component({
   selector: 'app-create-car-modal',
@@ -10,7 +12,7 @@ import { NgIf } from '@angular/common';
   templateUrl: './create-car-modal.component.html',
   styleUrl: './create-car-modal.component.css'
 })
-export class CreateCarModalComponent {
+export class CreateCarModalComponent implements OnChanges {
   private formBuilder = inject(FormBuilder);
 
   carService = inject(CarService);
@@ -24,7 +26,8 @@ export class CreateCarModalComponent {
     carImage: ['', [Validators.required]],
     regNo: ['', [Validators.required]]
   })
-  @Output() carCreated = new EventEmitter();
+  @Input() selectedCar: Car | null = null;
+  @Output() carSubmitted = new EventEmitter();
 
   get regNo() {
     return this.vehicleForm.get('regNo');
@@ -54,14 +57,49 @@ export class CreateCarModalComponent {
     return this.vehicleForm.get('carImage');
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("🚀 ~ CreateCarModalComponent ~ ngOnChanges ~ this.selectedCar:", this.selectedCar)
+
+    if (changes['selectedCar']) {
+      this.selectedCar ?
+        this.vehicleForm.setValue(this.selectedCar) :
+        this.vehicleForm.reset();
+    }
+  }
+
   saveCar(event: Event) {
     event.preventDefault();
 
-    this.carService.createCar(this.vehicleForm.value).subscribe((response: any) => {
+    const carData = this.vehicleForm.value;
+
+    if (!this.selectedCar) {
+      this.createCar(carData);
+
+      return;
+    }
+
+    this.updateCar(carData);
+  }
+
+  createCar(carData: Partial<Car>) {
+    this.carService.createCar(carData).subscribe((response: APIResponse) => {
       if (response.result) {
         alert('Vehicle created successfully!')
-        this.carCreated.emit();
+        this.carSubmitted.emit();
         this.resetForm();
+
+        return;
+      }
+
+      alert(response.message);
+    })
+  }
+
+  updateCar(carData: Partial<Car>) {
+    this.carService.updateCar(carData).subscribe((response: APIResponse) => {
+      if (response.result) {
+        alert('Vehicle updated successfully!')
+        this.carSubmitted.emit();
 
         return;
       }

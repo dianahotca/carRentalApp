@@ -2,7 +2,7 @@
     <div class="card-header d-flex justify-content-between">
         <h5>Car List</h5>
 
-        <button class="btn btn-primary" (click)="openCreateCarModal()">Create New Car</button>
+        <button class="btn btn-primary" (click)="openCarFormModal()">Create New Car</button>
     </div>
 
     <div class="card-body">
@@ -27,10 +27,10 @@
                         <td>{{car.regNo}}</td>
                         <td>{{car.dailyRate}}</td>
                         <td>
-                            <button class="btn btn-secondary">Edit</button>
+                            <button class="btn btn-secondary" (click)="editCar(car)">Edit</button>
                         </td>
                         <td>
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-danger" (click)="deleteCar()">Delete</button>
                         </td>
                     </tr>
                 }
@@ -38,5 +38,5 @@
         </table>
     </div>
 
-    <app-create-car-modal (carCreated)="loadCars()"/>
+    <app-create-car-modal [selectedCar]="selectedCar" (carSubmitted)="loadCars()"/>
 </div>

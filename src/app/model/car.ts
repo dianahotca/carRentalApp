@@ -3,7 +3,7 @@ export type Car = {
     brand: string,
     model: string,
     year: number,
-    color?: string,
+    color: string,
     dailyRate: number,
     carImage: string,
     regNo: string

@@ -17,4 +17,8 @@ export class CarService {
   createCar(carData: Partial<Car>) {
     return this.httpClient.post<APIResponse>(`${this.apiUrl}CreateNewCar`, carData);
   }
+
+  updateCar(carData: Partial<Car>) {
+    return this.httpClient.put<APIResponse>(`${this.apiUrl}UpdateCar`, carData);
+  }
 }

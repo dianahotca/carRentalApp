@@ -139,13 +139,21 @@
                             Reset form
                         </button>
                         <button
+                            *ngIf="!selectedCar?.carId"
                             type="submit"
                             class="btn btn-success"
                             [disabled]="vehicleForm.invalid"
                         >
                             Save car
                         </button>
-                        <!-- <button class="btn btn-primary" *ngIf="car.carId" (click)="updateCar()">Update car</button> -->
+                        <button
+                            *ngIf="selectedCar?.carId"
+                            type="submit"
+                            class="btn btn-primary"
+                            [disabled]="vehicleForm.invalid"
+                        >
+                            Update car
+                        </button>
                     </div>
                 </form>
             </div>
