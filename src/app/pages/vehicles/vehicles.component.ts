@@ -17,9 +17,7 @@ export class VehiclesComponent implements AfterViewInit {
   private createCarModal: Modal | null = null;
 
   ngAfterViewInit() {
-    this.carService.loadCars().subscribe(response => {
-      this.carList = response.data;
-    });
+    this.loadCars();
 
     const modalElement = document.getElementById('createCarModal');
 
@@ -28,11 +26,13 @@ export class VehiclesComponent implements AfterViewInit {
     }
   }
 
+  loadCars() {
+    this.carService.getCars().subscribe(response => {
+      this.carList = response.data;
+    });
+  }
+
   openCreateCarModal() {
-    if (this.createCarModal) {
-      this.createCarModal.show();
-    } else {
-      console.error("Modal not found!");
-    }
+    this.createCarModal?.show();
   }
 }

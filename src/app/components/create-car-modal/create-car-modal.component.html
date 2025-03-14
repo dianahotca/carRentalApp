@@ -14,51 +14,72 @@
             </div>
 
             <div class="modal-body">
-                <form>
+                <form
+                    [formGroup]="vehicleForm"
+                    (ngSubmit)="saveCar($event)"
+                >
                     <div class="row">
                         <div class="col-md-5 mb-3">
                             <label>Reg No</label>
                             <input
                                 type="text"
-                                (change)="updateFormData('regNo', $event)"
                                 class="form-control"
-                                placeholder="Enter car image url"
-                                name="regNo"
+                                placeholder="Enter car reg no"
+                                formControlName="regNo"
                             >
+                            <div
+                                *ngIf="regNo?.invalid && (regNo?.dirty || regNo?.touched)"
+                                class="text-danger"
+                            >
+                                <div *ngIf="regNo?.hasError('required')">Registration number is required.</div>
+                            </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Brand</label>
                             <input
                                 type="text"
-                                (change)="updateFormData('brand', $event)"
                                 class="form-control"
                                 placeholder="Enter brand name"
-                                name="brand"
+                                formControlName="brand"
                             >
+                            <div
+                                *ngIf="brand?.invalid && (brand?.dirty || brand?.touched)"
+                                class="text-danger"
+                            >
+                                <div *ngIf="brand?.hasError('required')">Brand is required.</div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-5 mb-3">
                             <label>Model</label>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    (change)="updateFormData('model', $event)"
-                                    class="form-control"
-                                    placeholder="Enter model name"
-                                    name="model"
-                                >
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter model name"
+                                formControlName="model"
+                            >
+                            <div
+                                *ngIf="model?.invalid && (model?.dirty || model?.touched)"
+                                class="text-danger"
+                            >
+                                <div *ngIf="model?.hasError('required')">Model is required.</div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label>Year</label>
                             <input
                                 type="text"
-                                (change)="updateFormData('year', $event)"
                                 class="form-control"
                                 placeholder="Enter year"
-                                name="year"
+                                formControlName="year"
                             >
+                            <div
+                                *ngIf="year?.invalid && (year?.dirty || year?.touched)"
+                                class="text-danger"
+                            >
+                                <div *ngIf="year?.hasError('required')">Year is required.</div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -66,39 +87,61 @@
                             <label>Color</label>
                             <input
                                 type="text"
-                                (change)="updateFormData('color', $event)"
                                 class="form-control"
                                 placeholder="Enter color"
-                                name="color"
+                                formControlName="color"
                             >
+                            <div
+                                *ngIf="color?.invalid && (color?.dirty || color?.touched)"
+                                class="text-danger"
+                            >
+                                <div *ngIf="color?.hasError('required')">Color is required.</div>
+                            </div>
                         </div>
                         <div class="col-md-5 mb-3">
                             <label>Daily rate</label>
                             <input
                                 type="text"
-                                (change)="updateFormData('dailyRate', $event)"
                                 class="form-control"
                                 placeholder="Enter daily rate"
-                                name="dailyRate"
+                                formControlName="dailyRate"
                             >
+                            <div
+                                *ngIf="dailyRate?.invalid && (dailyRate?.dirty || dailyRate?.touched)"
+                                class="text-danger"
+                            >
+                                <div *ngIf="dailyRate?.hasError('required')">Daily rate is required.</div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-10 mb-3">
                         <label>Car Image URL</label>
                         <input
                             type="text"
-                            (change)="updateFormData('carImage', $event)"
                             class="form-control"
                             placeholder="Enter car image URL"
-                            name="image"
+                            formControlName="carImage"
                         >
+                        <div
+                            *ngIf="carImage?.invalid && (carImage?.dirty || carImage?.touched)"
+                            class="text-danger"
+                        >
+                            <div *ngIf="carImage?.hasError('required')">Car image is required.</div>
+                        </div>
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-secondary">Reset form</button>
                         <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="resetForm()"
+                        >
+                            Reset form
+                        </button>
+                        <button
+                            type="submit"
                             class="btn btn-success"
-                            (click)="saveCar()"
+                            [disabled]="vehicleForm.invalid"
                         >
                             Save car
                         </button>
@@ -106,17 +149,6 @@
                     </div>
                 </form>
             </div>
-
-            <div class="modal-footer">
-                <button
-                    type="button"
-                    class="btn btn-danger"
-                    data-bs-dismiss="modal"
-                >
-                    Close
-                </button>
-            </div>
-
         </div>
     </div>
 </div>
