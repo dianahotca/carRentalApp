@@ -13,30 +13,35 @@ import { CreateCarModalComponent } from "../../components/create-car-modal/creat
 export class VehiclesComponent implements AfterViewInit {
   carService = inject(CarService);
 
-  carList: Car[] = [];
   private createCarModal: Modal | null = null;
+  private deleteCarModal: Modal | null = null;
+
+  carList: Car[] = [];
   selectedCar: Car | null = null;
+  selectedCarId: number | null = null;
 
   ngAfterViewInit() {
     this.loadCars();
 
-    const modalElement = document.getElementById('createCarModal');
+    const createCarModalElement = document.getElementById('createCarModal');
 
-    if (modalElement) {
-      this.createCarModal = new Modal(modalElement);
+    if (createCarModalElement) {
+      this.createCarModal = new Modal(createCarModalElement);
 
-      modalElement.addEventListener('hidden.bs.modal', () => {
-        this.onCarFormModalClose();
+      createCarModalElement.addEventListener('hidden.bs.modal', () => {
+        this.selectedCar = null;
       });
+    }
+
+    const deleteCarModalElement = document.getElementById('deleteConfirmationModal');
+
+    if (deleteCarModalElement) {
+      this.deleteCarModal = new Modal(deleteCarModalElement);
     }
   }
 
   openCarFormModal() {
     this.createCarModal?.show();
-  }
-
-  onCarFormModalClose() {
-    this.selectedCar = null;
   }
 
   loadCars() {
@@ -50,7 +55,23 @@ export class VehiclesComponent implements AfterViewInit {
     this.openCarFormModal();
   }
 
-  deleteCar() {
+  setSelectedCarId(carId: number) {
+    this.selectedCarId = carId;
+  }
 
+  deleteCar() {
+    if (this.selectedCarId) {
+      this.carService.deleteCar(this.selectedCarId).subscribe(response => {
+        if (response.result) {
+          alert("Car deleted successfully!");
+          this.loadCars();
+          this.selectedCarId = null;
+
+          return;
+        }
+
+        alert(response.message);
+      });
+    }
   }
 }

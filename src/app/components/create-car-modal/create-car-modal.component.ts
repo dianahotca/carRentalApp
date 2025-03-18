@@ -58,8 +58,6 @@ export class CreateCarModalComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("🚀 ~ CreateCarModalComponent ~ ngOnChanges ~ this.selectedCar:", this.selectedCar)
-
     if (changes['selectedCar']) {
       this.selectedCar ?
         this.vehicleForm.setValue(this.selectedCar) :

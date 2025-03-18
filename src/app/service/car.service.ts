@@ -21,4 +21,8 @@ export class CarService {
   updateCar(carData: Partial<Car>) {
     return this.httpClient.put<APIResponse>(`${this.apiUrl}UpdateCar`, carData);
   }
+
+  deleteCar(carId: number) {
+    return this.httpClient.delete<APIResponse>(`${this.apiUrl}DeleteCarByCarId?carid=${carId}`);
+  }
 }

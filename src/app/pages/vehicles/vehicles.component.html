@@ -30,7 +30,7 @@
                             <button class="btn btn-secondary" (click)="editCar(car)">Edit</button>
                         </td>
                         <td>
-                            <button class="btn btn-danger" (click)="deleteCar()">Delete</button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" (click)="setSelectedCarId(car.carId)">Delete</button>
                         </td>
                     </tr>
                 }
@@ -39,4 +39,24 @@
     </div>
 
     <app-create-car-modal [selectedCar]="selectedCar" (carSubmitted)="loadCars()"/>
+    <div id="deleteConfirmationModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Delete Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+                </div>
+
+                <div class="modal-body">
+                <p>Are you sure you want to delete this car?</p>
+                </div>
+                
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteCar()">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
