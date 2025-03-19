@@ -15,7 +15,7 @@
                 <ng-container *ngIf="customerList.value()?.data as customers">
                     @for (customer of customers; track $index) {
                         <tr>
-                            <td>{{$index}}</td>
+                            <td>{{$index + 1}}</td>
                             <td>{{customer.customerName}}</td>
                             <td>{{customer.customerCity}}</td>
                             <td>{{customer.mobileNo}}</td>
