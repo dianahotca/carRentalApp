@@ -1,6 +1,5 @@
-import { AfterContentChecked, AfterViewInit, Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { CarService } from '../../service/car.service';
-import { Modal } from 'bootstrap';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { CarService } from '../../service/car/car.service';
 import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Car } from '../../model/car';

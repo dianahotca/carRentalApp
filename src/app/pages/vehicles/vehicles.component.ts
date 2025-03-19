@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { Modal } from 'bootstrap';
-import { CarService } from '../../service/car.service';
+import { CarService } from '../../service/car/car.service';
 import { Car } from '../../model/car';
 import { CreateCarModalComponent } from "../../components/create-car-modal/create-car-modal.component";
 
@@ -14,7 +14,6 @@ export class VehiclesComponent implements AfterViewInit {
   carService = inject(CarService);
 
   private createCarModal: Modal | null = null;
-  private deleteCarModal: Modal | null = null;
 
   carList: Car[] = [];
   selectedCar: Car | null = null;
@@ -31,12 +30,6 @@ export class VehiclesComponent implements AfterViewInit {
       createCarModalElement.addEventListener('hidden.bs.modal', () => {
         this.selectedCar = null;
       });
-    }
-
-    const deleteCarModalElement = document.getElementById('deleteConfirmationModal');
-
-    if (deleteCarModalElement) {
-      this.deleteCarModal = new Modal(deleteCarModalElement);
     }
   }
 

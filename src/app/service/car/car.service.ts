@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { APIResponse } from '../model/apiResponse';
-import { Car } from '../model/car';
+import { APIResponse } from '../../model/apiResponse';
+import { Car } from '../../model/car';
 
 @Injectable({
   providedIn: 'root'
