@@ -1,1 +1,31 @@
-<p>customer works!</p>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <ng-container *ngIf="customerList.value()?.data as customers">
+                    @for (customer of customers; track $index) {
+                        <tr>
+                            <td>{{$index}}</td>
+                            <td>{{customer.customerName}}</td>
+                            <td>{{customer.customerCity}}</td>
+                            <td>{{customer.mobileNo}}</td>
+                            <td>{{customer.email}}</td>
+                        </tr>
+                    }
+                </ng-container>
+                
+            </tbody>
+        </table>
+    
+    </div>
+</div>

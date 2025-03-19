@@ -3,7 +3,6 @@ import { CarService } from '../../service/car/car.service';
 import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Car } from '../../model/car';
-import { APIResponse } from '../../model/apiResponse';
 
 @Component({
   selector: 'app-create-car-modal',
@@ -79,7 +78,7 @@ export class CreateCarModalComponent implements OnChanges {
   }
 
   createCar(carData: Partial<Car>) {
-    this.carService.createCar(carData).subscribe((response: APIResponse) => {
+    this.carService.createCar(carData).subscribe((response) => {
       if (response.result) {
         alert('Vehicle created successfully!')
         this.carSubmitted.emit();
@@ -93,7 +92,7 @@ export class CreateCarModalComponent implements OnChanges {
   }
 
   updateCar(carData: Partial<Car>) {
-    this.carService.updateCar(carData).subscribe((response: APIResponse) => {
+    this.carService.updateCar(carData).subscribe((response) => {
       if (response.result) {
         alert('Vehicle updated successfully!')
         this.carSubmitted.emit();
