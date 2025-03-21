@@ -1,20 +1,23 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy } from '@angular/core';
 import { Modal } from 'bootstrap';
 import { CarService } from '../../service/car/car.service';
 import { Car } from '../../model/car';
 import { CreateCarModalComponent } from "../../components/create-car-modal/create-car-modal.component";
+import { MasterService } from '../../service/master.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-vehicles',
-  imports: [CreateCarModalComponent],
+  imports: [CreateCarModalComponent, NgIf],
   templateUrl: './vehicles.component.html',
   styleUrl: './vehicles.component.css'
 })
-export class VehiclesComponent implements AfterViewInit {
-  carService = inject(CarService);
-
+export class VehiclesComponent implements AfterViewInit, OnDestroy {
   private createCarModal: Modal | null = null;
+  private masterService = inject(MasterService);
+  private carService = inject(CarService);
 
+  isLoading = true;
   carList: Car[] = [];
   selectedCar: Car | null = null;
   selectedCarId: number | null = null;
@@ -33,13 +36,39 @@ export class VehiclesComponent implements AfterViewInit {
     }
   }
 
+  constructor() {
+    this.masterService.searchData.subscribe((carSearchItem) => {
+      if (carSearchItem) {
+        const filteredCarList = this.carList.filter(car => (car.brand || car.model).includes(carSearchItem))
+        this.carList = filteredCarList;
+
+        return;
+      }
+
+      this.loadCars();
+    })
+  }
+
+  ngOnDestroy() {
+    this.masterService.searchData.next("");
+  }
+
   openCarFormModal() {
     this.createCarModal?.show();
   }
 
   loadCars() {
+    this.isLoading = true;
     this.carService.getCars().subscribe(response => {
-      this.carList = response.data;
+      if (response.result) {
+        this.carList = response.data;
+        this.isLoading = false;
+
+        return;
+      }
+
+      alert(response.message);
+      this.isLoading = false;
     });
   }
 

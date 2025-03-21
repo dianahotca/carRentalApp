@@ -1,7 +1,8 @@
-import { Component, resource } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, inject, OnDestroy, resource } from '@angular/core';
 import { Customer } from '../../model/customer';
 import { NgIf } from '@angular/common';
 import { APIResponse } from '../../model/apiResponse';
+import { MasterService } from '../../service/master.service';
 
 @Component({
   selector: 'app-customer',
@@ -9,15 +10,39 @@ import { APIResponse } from '../../model/apiResponse';
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
-export class CustomerComponent {
+export class CustomerComponent implements OnDestroy {
   private apiUrl: string = "https://freeapi.miniprojectideas.com/api/CarRentalApp/";
+  private masterService = inject(MasterService);
+
+  filteredCustomerList: Customer[] = [];
+
+  constructor() {
+    this.masterService.searchData.subscribe((customerSearchItem) => {
+      if (customerSearchItem) {
+        this.filteredCustomerList = this.customerList.value()?.data.filter(customer => customer.customerName.includes(customerSearchItem)) || [];
+        this.customerList.set({ result: true, data: this.filteredCustomerList, message: "" });
+
+        return;
+      }
+
+      this.customerList.reload();
+    })
+  }
+
+  ngOnDestroy() {
+    this.masterService.searchData.next("");
+  }
 
   customerList = resource({
     loader: () => {
       return fetch(`${this.apiUrl}GetCustomers`)
-        .then((response) =>
-          response.json() as Promise<APIResponse<Customer>>
-        )
-    }
+        .then((response) => {
+          return response.json() as Promise<APIResponse<Customer>>
+        })
+        .catch((error) => {
+          alert(error);
+        })
+    },
+
   })
 }

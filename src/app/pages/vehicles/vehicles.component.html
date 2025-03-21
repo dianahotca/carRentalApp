@@ -4,7 +4,10 @@
         <button class="btn btn-primary" (click)="openCarFormModal()">Create New Car</button>
     </div>
 
-    <div class="col-12 d-flex flex-wrap gap-2">
+    <p *ngIf="isLoading">Loading cars...</p>
+    <p *ngIf="!isLoading && !carList.length">No results found.</p>
+
+    <div class="col-12 d-flex flex-wrap gap-2" *ngIf="carList.length">
         @for (car of carList; track $index) {
             <div class="card col-3">
                 <div class="card-body">

@@ -1,5 +1,8 @@
 <div class="row">
-    <div class="col-12">
+    <p *ngIf="customerList.isLoading()">Loading customers...</p>
+    <p *ngIf="!customerList.isLoading() && !customerList.value()?.data?.length">No results found.</p>
+
+    <div class="col-12" *ngIf="customerList.value()?.data?.length">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -12,8 +15,8 @@
             </thead>
 
             <tbody>
-                <ng-container *ngIf="customerList.value()?.data as customers">
-                    @for (customer of customers; track $index) {
+                <ng-container>
+                    @for (customer of customerList.value()?.data; track $index) {
                         <tr>
                             <td>{{$index + 1}}</td>
                             <td>{{customer.customerName}}</td>
@@ -26,6 +29,5 @@
                 
             </tbody>
         </table>
-    
     </div>
 </div>
