@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, inject, OnDestroy, resource } from '@angular/core';
+import { Component, inject, OnDestroy, resource } from '@angular/core';
 import { Customer } from '../../model/customer';
 import { NgIf } from '@angular/common';
 import { APIResponse } from '../../model/apiResponse';
