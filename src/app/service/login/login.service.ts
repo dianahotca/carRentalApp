@@ -12,7 +12,6 @@ export class LoginService {
   private httpClient = inject(HttpClient);
   private router = inject(Router);
 
-
   constructor() { }
 
   login(user: User) {
