@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth/auth.service';
-import { APIResponse, LoginResponseData } from '../../model/apiResponse';
+import { APIResponse, LoginResponseData } from '../../model/api/apiResponse';
 import { User } from '../../model/user';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, inject, OnDestroy, resource } from '@angular/core';
 import { Customer } from '../../model/customer';
 import { NgIf } from '@angular/common';
-import { APIResponse } from '../../model/apiResponse';
 import { MasterService } from '../../service/master/master.service';
+import { CustomersApiResponse } from '../../model/api/customerApi';
 
 @Component({
   selector: 'app-customer',
@@ -37,12 +37,11 @@ export class CustomerComponent implements OnDestroy {
     loader: () => {
       return fetch(`${this.apiUrl}GetCustomers`)
         .then((response) => {
-          return response.json() as Promise<APIResponse<Customer>>
+          return response.json() as Promise<CustomersApiResponse>
         })
         .catch((error) => {
           alert(error);
         })
     },
-
   })
 }

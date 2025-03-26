@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { APIResponse } from '../../model/apiResponse';
+import { APIResponse } from '../../model/api/apiResponse';
 import { Car } from '../../model/car';
 
 @Injectable({

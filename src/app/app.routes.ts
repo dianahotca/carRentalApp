@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { authGuard } from './guard/auth.guard';
+import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
 
 export const routes: Routes = [
     {
@@ -34,5 +35,9 @@ export const routes: Routes = [
                 component: CustomerComponent
             }
         ]
-    }
+    },
+    {
+        path: 'accessDenied',
+        component: AccessDeniedComponent
+    },
 ];

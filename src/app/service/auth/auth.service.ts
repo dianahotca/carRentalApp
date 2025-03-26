@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { User } from '../../model/user';
-import { APIResponse } from '../../model/apiResponse';
+import { APIResponse } from '../../model/api/apiResponse';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,6 +16,10 @@ export class AuthService {
 
   login(user: User) {
     return this.httpClient.post<APIResponse<User>>(`${this.apiUrl}login`, user);
+  }
+
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('authToken');
   }
 
   logout() {

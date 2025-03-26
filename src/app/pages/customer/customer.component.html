@@ -1,6 +1,6 @@
 <div class="row">
     <p *ngIf="customerList.isLoading()">Loading customers...</p>
-    <p *ngIf="!customerList.isLoading() && !customerList.value()?.data?.length">No results found.</p>
+    <p *ngIf="!customerList.isLoading() && !customerList.value()?.data?.length;">No results found.</p>
 
     <div class="col-12" *ngIf="customerList.value()?.data?.length">
         <table class="table table-bordered">
