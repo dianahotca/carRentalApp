@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy, resource } from '@angular/core';
 import { Customer } from '../../model/customer';
 import { NgIf } from '@angular/common';
 import { APIResponse } from '../../model/apiResponse';
-import { MasterService } from '../../service/master.service';
+import { MasterService } from '../../service/master/master.service';
 
 @Component({
   selector: 'app-customer',

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { MasterService } from '../../service/master.service';
+import { MasterService } from '../../service/master/master.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({

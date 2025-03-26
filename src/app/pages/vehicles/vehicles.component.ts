@@ -3,7 +3,7 @@ import { Modal } from 'bootstrap';
 import { CarService } from '../../service/car/car.service';
 import { Car } from '../../model/car';
 import { CreateCarModalComponent } from "../../components/create-car-modal/create-car-modal.component";
-import { MasterService } from '../../service/master.service';
+import { MasterService } from '../../service/master/master.service';
 import { NgIf } from '@angular/common';
 
 @Component({
