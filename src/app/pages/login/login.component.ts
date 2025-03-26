@@ -2,7 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../service/login/login.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { APIResponse, LoginResponseData } from '../../model/apiResponse';
 import { User } from '../../model/user';
 
@@ -13,7 +13,7 @@ import { User } from '../../model/user';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  private loginService = inject(LoginService);
+  private loginService = inject(AuthService);
   router = inject(Router);
 
   loginForm: FormGroup = new FormGroup({

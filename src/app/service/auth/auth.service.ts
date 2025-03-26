@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
   private apiUrl = "https://projectapi.gerasim.in/api/UserApp/"
   private httpClient = inject(HttpClient);
   private router = inject(Router);

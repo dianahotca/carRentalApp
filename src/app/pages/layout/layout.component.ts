@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MasterService } from '../../service/master/master.service';
 import { FormsModule } from '@angular/forms';
-import { LoginService } from '../../service/login/login.service';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +12,7 @@ import { LoginService } from '../../service/login/login.service';
 })
 export class LayoutComponent {
   private masterService = inject(MasterService);
-  loginService = inject(LoginService);
+  loginService = inject(AuthService);
   searchItem = "";
 
   constructor() {
