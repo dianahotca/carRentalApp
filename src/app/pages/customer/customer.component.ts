@@ -19,7 +19,7 @@ export class CustomerComponent implements OnDestroy {
   constructor() {
     this.masterService.searchData.subscribe((customerSearchItem) => {
       if (customerSearchItem) {
-        this.filteredCustomerList = this.customerList.value()?.data.filter(customer => customer.customerName.includes(customerSearchItem)) || [];
+        this.filteredCustomerList = (this.customerList.value()?.data as Customer[]).filter(customer => customer.customerName.includes(customerSearchItem)) || [];
         this.customerList.set({ result: true, data: this.filteredCustomerList, message: "" });
 
         return;

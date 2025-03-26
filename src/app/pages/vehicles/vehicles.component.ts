@@ -61,7 +61,7 @@ export class VehiclesComponent implements AfterViewInit, OnDestroy {
     this.isLoading = true;
     this.carService.getCars().subscribe(response => {
       if (response.result) {
-        this.carList = response.data;
+        this.carList = response.data as Car[];
         this.isLoading = false;
 
         return;
