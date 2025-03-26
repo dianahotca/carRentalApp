@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MasterService } from '../../service/master/master.service';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from '../../service/login/login.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,8 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
-  router = inject(Router);
   private masterService = inject(MasterService);
+  loginService = inject(LoginService);
   searchItem = "";
 
   constructor() {
@@ -23,12 +24,6 @@ export class LayoutComponent {
   }
 
   onSearchItemChange() {
-    console.log("🚀 ~ LayoutComponent ~ onSearchItemChange ~ this.searchItem:", this.searchItem)
-
     this.masterService.searchData.next(this.searchItem);
-  }
-
-  logOut() {
-    this.router.navigateByUrl('login')
   }
 }

@@ -29,14 +29,10 @@ export class LoginComponent {
       if (response.result) {
         sessionStorage.setItem('authToken', (response.data as LoginResponseData).token)
         this.router.navigateByUrl('dashboard');
-
-        return;
       }
-
-      this.invalidCredentials = true;
     },
       (error: any) => {
-        alert(error);
+        this.invalidCredentials = true;
       });
   }
 }

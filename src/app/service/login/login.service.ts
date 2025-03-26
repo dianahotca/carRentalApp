@@ -12,14 +12,15 @@ export class LoginService {
   private httpClient = inject(HttpClient);
   private router = inject(Router);
 
+
+  constructor() { }
+
   login(user: User) {
     return this.httpClient.post<APIResponse<User>>(`${this.apiUrl}login`, user);
   }
 
   logout() {
-    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('authToken');
     this.router.navigateByUrl('login');
   }
-
-  constructor() { }
 }
